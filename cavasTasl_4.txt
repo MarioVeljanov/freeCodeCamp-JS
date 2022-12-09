@@ -1,0 +1,10 @@
+let canvas = document.getElementById("canvas");
+let ctx = canvas.getContext("2d");
+
+$("html").mousemove(function(event) {
+	ctx.lineWidth = 5;
+	ctx.fillStyle = 'black';
+	ctx.beginPath();
+	ctx.arc(event.pageX, event.pageY, 3, Math.PI * 2, false);
+	ctx.fill();
+})

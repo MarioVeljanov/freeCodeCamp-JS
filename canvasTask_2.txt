@@ -1,0 +1,14 @@
+let canvas = document.getElementById("canvas");
+let ctx = canvas.getContext("2d");
+const color = ['green', 'blue', 'palegreen', 'violet', 'yellow', 'orange', 'purple', 'white', 'black', 'skyblue', 'pink', 'darkreed', 'darkslategrey', 'deeppink', 'gold', 'indigo', 'khaki', 'MediumSpringGreen'];
+
+function drawPoints(array) {
+	ctx.lineWidth = 2;
+	ctx.beginPath();
+	array.forEach(element => {
+		ctx.strokeStyle = color[Math.floor(Math.random() * color.length)];
+		ctx.lineTo(element[0], element[1]);
+		ctx.stroke();             
+	});
+                
+}

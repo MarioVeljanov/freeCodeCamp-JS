@@ -1,0 +1,25 @@
+function rowSumOddNumbers(n) {
+	let arr = [];
+    let b = 0;
+    let x = 1;
+    let step = 2;
+    while(arr.length <= n - 1) {
+        arr.push(x);
+        x += step ;
+        step += 2;
+        
+    }
+    b = arr[arr.length - 1];
+    step = 2
+    arr = [];
+    while(arr.length < n) {
+        arr.push(b);
+        b += step;
+    }
+    
+    return arr.reduce((acc, num) => acc + num);  
+
+} 
+
+
+console.log(rowSumOddNumbers(42));  

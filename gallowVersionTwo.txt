@@ -1,0 +1,85 @@
+let drawGallow = function(attempt) {
+    let canvas = document.getElementById("canvas");
+    let ctx = canvas.getContext("2d");
+    ctx.fillStyle = 'black';
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    if(attempt === 5) {
+        ctx.arc(100, 100, 30, Math.PI * 2, false);
+        ctx.stroke();
+    } else if(attempt === 4) {
+        ctx.moveTo(100, 130);
+        ctx.lineTo(100, 250);
+        ctx.stroke();
+    } else if (attempt === 3) {
+        ctx.moveTo(100, 150);
+        ctx.lineTo(50, 170);
+        ctx.stroke();
+    } else if(attempt === 2) {
+        ctx.moveTo(100, 150);
+        ctx.lineTo(150, 170);
+        ctx.stroke();
+    } else if(attempt === 1) {
+        ctx.moveTo(100, 250);
+        ctx.lineTo(50, 290);
+        ctx.stroke();
+    } else if(attempt === 0){
+        ctx.moveTo(100, 250);
+        ctx.lineTo(150, 290);
+        ctx.stroke();
+    }
+    
+};
+
+const words = [
+    "программа",
+    "макака",
+    "прекрасный",
+    "оладушек"
+];
+
+
+let word = words[Math.floor(Math.random() * words.length)];
+let answer = [];
+let remaingLetters = word.length;
+let a = 6;
+
+for(let key in word) {
+    answer[key] = '_';
+}
+
+while(remaingLetters > 0 && a !== 0) {
+    $("#answer").text(answer.join(' '));
+    drawGallow(a);
+    let guess = prompt(`Угадайте букву или нажмите Отмена для выхода из игры.`).toLowerCase();
+    
+    if(guess === null) {
+        break;
+    } else if(guess.length !== 1) {
+        alert("Пожалуйста, введите только одну букву.");
+    } else {
+        let k = a;
+        for(let i = 0; i < word.length; i++) {
+            if(answer[i] == guess) {
+                alert('Эта буква уже была');
+                k--;
+                break;
+            } else if(word[i] === guess) {
+                answer[i] = guess;
+                remaingLetters--;
+                k--;
+            } 
+            
+        }
+        if(k === a) {
+            a--;
+        }
+    }
+}
+if(a === 0) {
+    drawGallow(a);
+    $("#title").text(`К сожалению вы не угадали слово. Это было ${word}`);
+} else {
+    $("#answer").text(answer.join(' '));
+    $("#title").text(`Отлично! Было загадано слово ${word}`);
+}

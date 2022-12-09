@@ -1,0 +1,28 @@
+let canvas = document.getElementById("canvas");
+let ctx = canvas.getContext("2d");
+const color = ['green', 'blue', 'palegreen', 'violet', 'yellow', 'orange', 'purple', 'white', 'black', 'skyblue', 'pink', 'darkreed', 'darkslategrey', 'deeppink', 'gold', 'indigo', 'khaki', 'MediumSpringGreen'];
+
+let cicrcle = function(x, y, radius, fillCircle) {
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.arc(x, y, radius, Math.PI * 2, false);
+            
+            if(fillCircle) {
+                ctx.fillStyle = color[Math.floor(Math.random() * color.length)];
+                ctx.fill();
+            } else {
+                ctx.strokeStyle = color[Math.floor(Math.random() * color.length)];
+		ctx.stroke();
+	    }
+}
+
+let drowSnowman = function(w, q) {
+    	cicrcle(w, q - 15, 30, false);
+   	cicrcle(w, q + 55, 40, false);
+   	cicrcle(w + 10, q - 25, 5, true);
+   	cicrcle(w - 10, q - 25, 5, true);
+   	cicrcle(w, q - 15, 5, true);
+   	cicrcle(w, q + 35, 5, true);
+   	cicrcle(w, q + 55, 5, true);
+   	cicrcle(w, q + 75, 5, true);
+}
